@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { SlowMotionVideo } from '@mui/icons-material'
+import Loading from './Loading'
 
 function SearchForm() {
 	const theme = useTheme()
@@ -44,8 +45,11 @@ function SearchForm() {
 				margin: '2rem 0rem',
 				marginTop: '4rem',
 				width: '100%',
-				display: 'grid',
-				placeItems: 'center',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+				height: !data ? '70vh' : 'auto'
 			}}
 		>
 			<SlowMotionVideo
@@ -118,6 +122,10 @@ function SearchForm() {
 					Search
 				</Button>
 			</form>
+
+			{
+				pending && <Loading />
+			}
 		</Box>
 	)
 }
