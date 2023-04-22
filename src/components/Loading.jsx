@@ -11,7 +11,7 @@ function Loading() {
                 speed={1}
                 loop
 				src={loading}
-				style={{ height: '300px', width: '100%' }}
+				style={{ height: '250px', width: '100%' }}
 			/>
 		</Box>
 	)
