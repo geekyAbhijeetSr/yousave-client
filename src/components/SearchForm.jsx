@@ -5,7 +5,7 @@ import {
 	Button,
 	useMediaQuery,
 } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { SlowMotionVideo } from '@mui/icons-material'
 import Loading from './Loading'
@@ -42,14 +42,16 @@ function SearchForm() {
 	return (
 		<Box
 			sx={{
-				margin: '2rem 0rem',
-				marginTop: '4rem',
+				paddingTop: {
+					md: '8rem',
+					sm: '5rem',
+					xs: '3rem',
+				},
 				width: '100%',
 				display: 'flex',
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				height: !data ? (pending ? '100vh' : '70vh') : 'auto'
 			}}
 		>
 			<SlowMotionVideo
@@ -85,6 +87,7 @@ function SearchForm() {
 				sx={{
 					textAlign: 'center',
 					fontWeight: 300,
+					marginBottom: '3rem',
 				}}
 				component='h2'
 				variant={smDownMatches ? 'h4' : 'h3'}
@@ -96,7 +99,6 @@ function SearchForm() {
 				style={{
 					position: 'relative',
 					width: '100%',
-					margin: '3rem',
 				}}
 				className='form'
 				onSubmit={submit}
@@ -123,9 +125,7 @@ function SearchForm() {
 				</Button>
 			</form>
 
-			{
-				pending && <Loading />
-			}
+			{pending && <Loading />}
 		</Box>
 	)
 }
