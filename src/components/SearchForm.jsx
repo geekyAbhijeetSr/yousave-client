@@ -49,7 +49,7 @@ function SearchForm() {
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				height: !data ? '70vh' : 'auto'
+				height: !data ? (pending ? '100vh' : '70vh') : 'auto'
 			}}
 		>
 			<SlowMotionVideo
