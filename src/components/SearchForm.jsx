@@ -13,9 +13,29 @@ function SearchForm() {
 	const theme = useTheme()
 	const smDownMatches = useMediaQuery(theme.breakpoints.down('sm'))
 	const [inputLink, setInputLink] = useState('')
+	const [data, setData] = useState(null)
+	const [pending, setPending] = useState(false)
 
 	const submit = async e => {
 		e.preventDefault()
+		if (!inputLink) return
+
+		setPending(true)
+
+		const response = await fetch(
+			`${import.meta.env.VITE_API_URI}/yt/video-info?url=${inputLink}`
+		)
+		const data = await response.json()
+
+		console.log(data)
+
+		if (data.ok) {
+			setData(data)
+		} else {
+			setData(null)
+		}
+
+		setPending(false)
 	}
 
 	return (
@@ -98,8 +118,6 @@ function SearchForm() {
 					Search
 				</Button>
 			</form>
-
-			{/* <pre>{JSON.stringify(srtLink, undefined, 2)}</pre> */}
 		</Box>
 	)
 }
