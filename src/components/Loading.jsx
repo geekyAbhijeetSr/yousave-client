@@ -8,7 +8,8 @@ function Loading() {
 		<Box>
 			<Player
 				autoplay
-				speed={1}
+                speed={1}
+                loop
 				src={loading}
 				style={{ height: '300px', width: '100%' }}
 			/>
