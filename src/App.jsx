@@ -37,7 +37,7 @@ function App() {
 			},
 		},
 	})
-  return (
+	return (
 		<ThemeProvider theme={theme}>
 			<Container maxWidth='md'>
 				<SearchForm />
