@@ -54,7 +54,7 @@ function SearchForm() {
 	useEffect(() => {
 		const searchParams = new URLSearchParams(location.search)
 		const query = searchParams.get('id')
-		if (query) {
+		if (query && query !== data?.videoDetails?.videoId) {
 			const url = `https://www.youtube.com/watch?v=${query}`
 			setInputLink(url)
 			fetchData(url)
