@@ -21,7 +21,7 @@ function SearchForm() {
 	const navigate = useNavigate()
 	const formElRef = useRef()
 
-	const fetchData = async (v_url) => {
+	const fetchData = async v_url => {
 		setPending(true)
 
 		const response = await fetch(
@@ -82,6 +82,13 @@ function SearchForm() {
 					fontSize: '80px',
 					color: 'primary.main',
 					marginBottom: '1.5rem',
+					cursor: 'pointer',
+				}}
+				onClick={() => {
+					navigate('/')
+					setInputLink('')
+					setData(null)
+					setPending(false)
 				}}
 			/>
 
