@@ -1,7 +1,8 @@
-import { Box, Container, ThemeProvider, createTheme } from '@mui/material'
+import { Container, ThemeProvider, createTheme } from '@mui/material'
 import React from 'react'
 import SearchForm from './components/SearchForm'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+ 
 function App() {
 	let theme = createTheme({
 		palette: {
@@ -38,11 +39,15 @@ function App() {
 		},
 	})
 	return (
-		<ThemeProvider theme={theme}>
-			<Container maxWidth='md'>
-				<SearchForm />
-			</Container>
-		</ThemeProvider>
+		<BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<Container maxWidth='md'>
+					<Routes>
+						<Route path='/' element={<SearchForm />} />
+					</Routes>
+				</Container>
+			</ThemeProvider>
+		</BrowserRouter>
 	)
 }
 
