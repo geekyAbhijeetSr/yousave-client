@@ -55,7 +55,7 @@ function SearchForm() {
 		const searchParams = new URLSearchParams(location.search)
 		const query = searchParams.get('id')
 		if (query && query !== data?.videoDetails?.videoId) {
-			const url = `https://www.youtube.com/watch?v=${query}`
+			const url = `https://youtu.be/${query}`
 			setInputLink(url)
 			fetchData(url)
 		}
