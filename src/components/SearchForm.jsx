@@ -5,10 +5,11 @@ import {
 	Button,
 	useMediaQuery,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { SlowMotionVideo } from '@mui/icons-material'
 import Loading from './Loading'
+import { useNavigate } from 'react-router-dom'
 
 function SearchForm() {
 	const theme = useTheme()
@@ -16,15 +17,14 @@ function SearchForm() {
 	const [inputLink, setInputLink] = useState('')
 	const [data, setData] = useState(null)
 	const [pending, setPending] = useState(false)
+	const navigate = useNavigate()
+	const formElRef = useRef()
 
-	const submit = async e => {
-		e.preventDefault()
-		if (!inputLink) return
-
+	const fetchData = async (v_url) => {
 		setPending(true)
 
 		const response = await fetch(
-			`${import.meta.env.VITE_API_URI}/yt/video-info?url=${inputLink}`
+			`${import.meta.env.VITE_API_URI}/yt/video-info?url=${v_url}`
 		)
 		const data = await response.json()
 
@@ -32,12 +32,34 @@ function SearchForm() {
 
 		if (data.ok) {
 			setData(data)
+			console.log(data.videoDetails.videoId)
+			navigate(`/?id=${data.videoDetails.videoId}`)
 		} else {
 			setData(null)
 		}
 
 		setPending(false)
 	}
+
+	const submit = e => {
+		e.preventDefault()
+		if (!inputLink) return
+		fetchData(inputLink)
+	}
+
+	const handleInputChange = e => {
+		setInputLink(e.target.value)
+	}
+
+	useEffect(() => {
+		const searchParams = new URLSearchParams(location.search)
+		const query = searchParams.get('id')
+		if (query) {
+			const url = `https://www.youtube.com/watch?v=${query}`
+			setInputLink(url)
+			fetchData(url)
+		}
+	}, [location.search])
 
 	return (
 		<Box
@@ -101,13 +123,12 @@ function SearchForm() {
 					width: '100%',
 				}}
 				className='form'
+				ref={formElRef}
 				onSubmit={submit}
 			>
 				<TextField
 					value={inputLink}
-					onChange={e => {
-						setInputLink(e.target.value)
-					}}
+					onChange={handleInputChange}
 					fullWidth
 					placeholder='Paste an youtube video link'
 				/>
