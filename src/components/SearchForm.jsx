@@ -159,7 +159,7 @@ function SearchForm() {
 
 			{!pending && data && <YoutubeIframe videoDetails={data.videoDetails} />}
 
-			{!pending && data && <LinksContainer />}
+			{!pending && data && <LinksContainer videos={data.videos} audios={data.audios} />}
 		</Box>
 	)
 }

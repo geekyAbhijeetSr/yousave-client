@@ -2,9 +2,8 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import { Children } from 'react'
+import VideoLinks from './VidoeLinks'
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props
@@ -35,7 +34,7 @@ function a11yProps(index) {
 	}
 }
 
-export default function LinksContainer() {
+export default function LinksContainer({videos, audios}) {
 	const [value, setValue] = React.useState(0)
 
 	const handleChange = (event, newValue) => {
@@ -43,7 +42,7 @@ export default function LinksContainer() {
 	}
 
 	return (
-		<Box sx={{ width: '100%' }}>
+		<Box sx={{ width: '100%', maxWidth: 550 }}>
 			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 				<Tabs
 					value={value}
@@ -55,7 +54,7 @@ export default function LinksContainer() {
 				</Tabs>
 			</Box>
 			<TabPanel value={value} index={0}>
-				Videos Links Todo
+				<VideoLinks videos={videos} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				Audio Links Todo
