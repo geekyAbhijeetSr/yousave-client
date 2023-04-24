@@ -12,6 +12,7 @@ import Loading from './Loading'
 import { useNavigate } from 'react-router-dom'
 import YoutubeIframe from './YoutubeIframe'
 import LinksContainer from './LinksContainer'
+import { toast } from 'react-hot-toast'
 
 function SearchForm() {
 	const theme = useTheme()
@@ -38,6 +39,8 @@ function SearchForm() {
 			navigate(`/?id=${data.videoDetails.videoId}`)
 		} else {
 			setData(null)
+			toast.error(data.errorMsg)
+			navigate('/')
 		}
 
 		setPending(false)
