@@ -6,11 +6,12 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Button, Stack, Typography } from '@mui/material'
+import { Button, IconButton, Stack, Typography, useMediaQuery } from '@mui/material'
 import { bytesToSize } from '../helper/utils'
-import { VolumeOffOutlined, VolumeUpOutlined } from '@mui/icons-material'
+import { FileDownloadOutlined, VolumeOffOutlined, VolumeUpOutlined } from '@mui/icons-material'
 
 export default function VideoLinks({ videos }) {
+	const smUpMatch = useMediaQuery(theme => theme.breakpoints.up('sm'))
     
     const downloadClickHandle = (url) => {
         const downloadLink = document.createElement('a')
@@ -40,22 +41,33 @@ export default function VideoLinks({ videos }) {
 							<TableCell component='th' scope='row'>
 								<Stack flexDirection={'row'} gap={0.5}>
 									<Typography>{v.qualityLabel}</Typography>
-									{v.hasAudio ? <VolumeUpOutlined color='success' /> : <VolumeOffOutlined color='error' />}
+									{v.hasAudio ? (
+										<VolumeUpOutlined color='success' />
+									) : (
+										<VolumeOffOutlined color='error' />
+									)}
 								</Stack>
 							</TableCell>
 							<TableCell align='right'>
 								{v.contentLength ? bytesToSize(+v.contentLength) : '- -'}
 							</TableCell>
 							<TableCell align='right'>
-								<Button
-									variant='contained'
-									color='success'
-									onClick={() => {
-										downloadClickHandle(v.url)
-									}}
-								>
-									Download
-								</Button>
+								{smUpMatch ? (
+									<Button
+										variant='contained'
+										color='success'
+										onClick={() => {
+											downloadClickHandle(v.url)
+										}}
+										startIcon={<FileDownloadOutlined />}
+									>
+										Download
+									</Button>
+								) : (
+									<IconButton color='success'>
+										<FileDownloadOutlined />
+									</IconButton>
+								)}
 							</TableCell>
 						</TableRow>
 					))}
