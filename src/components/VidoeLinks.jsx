@@ -64,7 +64,12 @@ export default function VideoLinks({ videos }) {
 										Download
 									</Button>
 								) : (
-									<IconButton color='success'>
+									<IconButton
+										onClick={() => {
+											downloadClickHandle(v.url)
+										}}
+										color='success'
+									>
 										<FileDownloadOutlined />
 									</IconButton>
 								)}

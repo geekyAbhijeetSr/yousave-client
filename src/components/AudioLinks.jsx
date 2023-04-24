@@ -6,7 +6,13 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Button, IconButton, Stack, Typography, useMediaQuery } from '@mui/material'
+import {
+	Button,
+	IconButton,
+	Stack,
+	Typography,
+	useMediaQuery,
+} from '@mui/material'
 import { bytesToSize } from '../helper/utils'
 import { FileDownloadOutlined } from '@mui/icons-material'
 
@@ -59,7 +65,12 @@ export default function AudioLinks({ audios }) {
 										Download
 									</Button>
 								) : (
-									<IconButton color='success'>
+									<IconButton
+										onClick={() => {
+											downloadClickHandle(a.url)
+										}}
+										color='success'
+									>
 										<FileDownloadOutlined />
 									</IconButton>
 								)}
