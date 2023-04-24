@@ -31,11 +31,8 @@ function SearchForm() {
 		)
 		const data = await response.json()
 
-		console.log(data)
-
 		if (data.ok) {
 			setData(data)
-			console.log(data.videoDetails.videoId)
 			navigate(`/?id=${data.videoDetails.videoId}`)
 		} else {
 			setData(null)
