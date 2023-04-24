@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import VideoLinks from './VidoeLinks'
+import AudioLinks from './AudioLinks'
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props
@@ -42,7 +43,7 @@ export default function LinksContainer({videos, audios}) {
 	}
 
 	return (
-		<Box sx={{ width: '100%', maxWidth: 550 }}>
+		<Box sx={{ width: '100%', maxWidth: 550, marginBottom: 2 }}>
 			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 				<Tabs
 					value={value}
@@ -57,7 +58,7 @@ export default function LinksContainer({videos, audios}) {
 				<VideoLinks videos={videos} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Audio Links Todo
+				<AudioLinks audios={audios} />
 			</TabPanel>
 		</Box>
 	)
