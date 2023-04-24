@@ -11,6 +11,7 @@ import { SlowMotionVideo } from '@mui/icons-material'
 import Loading from './Loading'
 import { useNavigate } from 'react-router-dom'
 import YoutubeIframe from './YoutubeIframe'
+import LinksContainer from './LinksContainer'
 
 function SearchForm() {
 	const theme = useTheme()
@@ -157,6 +158,8 @@ function SearchForm() {
 			{pending && <Loading />}
 
 			{!pending && data && <YoutubeIframe videoDetails={data.videoDetails} />}
+
+			{!pending && data && <LinksContainer />}
 		</Box>
 	)
 }
